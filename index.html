@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Botanical Garden</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e5f7d9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .info {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .rules {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        #garden-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+            transition: opacity 1s ease-in-out;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        #registrationConfirmation {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Indian Botanical Garden</h1>
+        <p>Acharya Jagadish Chandra Bose Indian Botanical Garden is located at Shivpur, Howrah. Commonly known as Calcutta Botanical Garden. The park exhibits a variety of rare plants and a total collection of more than 12,000 specimens. The 109-hectare park is under the Botanical Survey of India (BSI) of the Ministry of Environment and Forests, Government of India.</p>
+    </header>
+
+    <form action="/register" method="post" id="registrationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        
+        <label for="area">Select Area:</label>
+        <select id="area" name="area" required>
+            <option value="main-garden">Main Garden - ₹500</option>
+            <option value="rose-garden">Rose Garden - ₹750</option>
+            <option value="orchid-garden">Orchid Garden - ₹1000</option>
+            <!-- Add more options for different areas and corresponding ticket prices -->
+        </select>
+
+        <label for="ticket-type">Ticket Type:</label>
+        <select id="ticket-type" name="ticket-type" required>
+            <option value="online">Online</option>
+            <option value="printout">Printout</option>
+        </select>
+
+        <button type="button" onclick="sendOtp()">Send OTP</button>
+        <label for="otp">OTP:</label>
+        <input type="text" id="otp" name="otp" required>
+
+        <button type="button" onclick="showRegistrationConfirmation()">Register & Book Ticket</button>
+    </form>
+
+    <div id="registrationConfirmation" class="info">
+        <h2>Registration Successful</h2>
+        <p>Thank you for registering! Your ticket has been booked.</p>
+    </div>
+
+    <div class="info">
+        <h2>Opening Hours</h2>
+        <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+        <p>Saturday - Sunday: 10:00 AM - 4:00 PM</p>
+    </div>
+
+    <div class="rules">
+        <h2>Rules & Regulations</h2>
+        <ul>
+            <li>No outside food or beverages allowed.</li>
+            <li>Please stay on designated paths.</li>
+            <li>No picking or damaging plants.</li>
+            <li>Respect the peace and tranquility of the garden.</li>
+            <li>Dispose of trash in designated bins.</li>
+        </ul>
+    </div>
+
+    <!-- Use the provided image URL -->
+    <img id="garden-image" src="https://cdn.s3waas.gov.in/s353e3a7161e428b65688f14b84d61c610/uploads/bfi_thumb/2021101917-scaled-pesuf3t3s12x4l375je90btf4909bx119nzgsnqlje.jpg" alt="Botanical Garden Image">
+
+    <!-- Slideshow Container for Additional Images -->
+    <div id="slideshow-container">
+        <div class="mySlides">
+            <img src="https://cdn.s3waas.gov.in/s353e3a7161e428b65688f14b84d61c610/uploads/bfi_thumb/2021100842-pe9gneavx03douv7lwmx3p65tqupjyizanhzuazbey.jpg" alt="Slideshow Image 1">
+        </div>
+
+        <div class="mySlides">
+            <img src="https://bsi.gov.in/uploads/banners/bsi_banner1589360822_83045.png" alt="Slideshow Image 2">
+        </div>
+
+        <div class="mySlides">
+            <img src="https://bsi.gov.in/uploads/RcTopMenu/bsi_topmenu1596695131_2577.png" alt="Slideshow Image 3">
+        </div>
+
+        <!-- Add more slides as needed -->
+
+    </div>
+
+    <div class="info">
+        <h2>How to Reach</h2>
+        <p><strong>By Air:</strong> The famous Dum Dum airport of Kolkata is the nearest airport from Acharya Jagadish Chandra Bose Indian Botanic Garden. The garden is situated around the distance of 30 kilometers from the airport.</p>
+        <p><strong>By Train:</strong> The nearest railway station is Howrah railway station. The garden is situated at a distance of 2 kms from the main station. Park Street is the nearest metro station, and from there, it takes 20 minutes to reach the spot.</p>
+        <p><strong>By Road:</strong> Buses and taxis are available to reach the garden.</p>
+    </div>
+
+    <!-- Google Map Link -->
+    <div class="info">
+        <h2>Location</h2>
+        <p>Visit the Indian Botanical Garden on Google Maps: <a href="https://maps.app.goo.gl/XWwFcgM9mRqMFNef8" target="_blank">Google Maps Link</a></p>
+    </div>
+
+    <script>
+        function sendOtp() {
+            // In a real-world scenario, this function would send an OTP to the provided phone number
+            alert("OTP sent to your phone number.");
+        }
+
+        function showRegistrationConfirmation() {
+            document.getElementById("registrationForm").style.display = "none";
+            document.getElementById("registrationConfirmation").style.display = "block";
+        }
+
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 1000); // Change slide every 1 second
+        }
+    </script>
+</body>
+</html>
